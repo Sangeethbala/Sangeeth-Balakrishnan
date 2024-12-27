@@ -155,6 +155,67 @@
             width: 100%;
             height: 100%;
         }
+        .method-selection {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .method-selection button {
+            padding: 10px 20px;
+            margin: 0 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .method-selection button:hover {
+            background-color: #0056b3;
+        }
+
+        .method-selection button.active {
+            background-color: #0056b3; /* Highlight the selected method */
+        }
+        #image-preview-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: auto;
+            margin-top: 20px;
+        }
+
+        #image-preview {
+            max-width: 100%; /* Make sure the image fits within the container */
+            max-height: 400px; /* Set a maximum height */
+            object-fit: contain; /* Maintain aspect ratio */
+        }
+
+        #canvas-container {
+            position: relative;
+            width: fit-content;
+            height: fit-content;
+            margin: 20px auto;
+        }
+
+        #user-image, #canvas {
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        #canvas {
+            pointer-events: none; /* Initially, the canvas should not capture events */
+        }
+        .image-placeholder {
+            width: 100%;
+            max-width: 600px;
+            height: auto;
+            margin: 20px auto;
+            display: block;
+        }
 
     </style>
 </head>
@@ -225,11 +286,7 @@
                     </div>
                     <div class="point">
                         <i class="fas fa-layer-group icon"></i>
-                        <span class="point-text">**Background/Foreground Replacement:** Seamlessly replace backgrounds or foregrounds with AI-generated alternatives.</span>
-                    </div>
-                    <div class="point">
-                        <i class="fas fa-draw-polygon icon"></i>
-                        <span class="point-text">**Freeform Editing:** Apply AI enhancements to specific areas of your image with a freeform tool.</span>
+                        <span class="point-text">**Background Replacement:** Seamlessly replace backgrounds with AI-generated alternatives.</span>
                     </div>
                     <div class="point">
                         <i class="fas fa-user-check icon"></i>
@@ -240,13 +297,27 @@
                         <span class="point-text">**Fast Processing:** Quick image generation and processing powered by advanced AI models.</span>
                     </div>
                     <div class="point">
-                         <i class="fas fa-video icon"></i>
-                        <span class="point-text">**Demo Available:** Watch the video demonstration to see the AI Image Editor in action.</span>
+                        <i class="fas fa-desktop icon"></i>
+                        <span class="point-text">**Web Application:** Access the AI Image Editor directly from your web browser.</span>
                     </div>
 
                 </div>
-                <div class="video-container">
-                     <iframe width="560" height="315" src="https://www.youtube.com/embed/sMHaVBg7-kM" frameborder="0" allowfullscreen></iframe>
+                <img src="https://drishyageethai.com/wp-content/uploads/2024/12/turtle-1536x2048.jpg" alt="AI Image Editor Example" class="image-placeholder">
+
+                <div class="method-selection">
+                    <h3>Select Editing Method:</h3>
+                    <button data-method="method1">Background Replacement</button>
+                </div>
+                <input type="file" id="image-upload" accept="image/*">
+                <input type="text" id="prompt" placeholder="Enter prompt here">
+                <button id="generate-button">Generate Image</button>
+
+                <div id="image-preview-container">
+                    <img id="image-preview" src="" alt="Generated Image">
+                </div>
+                 <div id="canvas-container">
+                    <img id="user-image" src="" alt="User Image">
+                    <canvas id="canvas"></canvas>
                 </div>
             </div>
 
@@ -333,10 +404,79 @@
     <footer>
         <p>© 2024 Your Name</p>
     </footer>
-     <script>
-            function downloadFile() {
-                window.location.href = 'interview_prep_assistant_windows.zip';
-            }
-     </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const generateButton = document.getElementById('generate-button');
+            const imageUpload = document.getElementById('image-upload');
+            const promptInput = document.getElementById('prompt');
+            const imagePreview = document.getElementById('image-preview');
+            const methodButton = document.querySelector('.method-selection button');
+            const userImage = document.getElementById('user-image');
+            const canvas = document.getElementById('canvas');
+            const ctx = canvas.getContext('2d');
+            let freeformPoints = [];
+            let isDrawing = false;
+
+            let selectedMethod = 'method1'; // Default method
+
+            methodButton.classList.add('active'); // Make the default method active initially
+
+            imageUpload.addEventListener('change', function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        userImage.src = e.target.result;
+                        userImage.onload = () => {
+                            canvas.width = userImage.width;
+                            canvas.height = userImage.height;
+                            ctx.drawImage(userImage, 0, 0, canvas.width, canvas.height);
+                        };
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+
+             generateButton.addEventListener('click', function() {
+                const file = imageUpload.files[0];
+                const prompt = promptInput.value;
+
+                if (!file) {
+                    alert('Please select an image file.');
+                    return;
+                }
+
+                if (!prompt) {
+                    alert('Please enter a prompt.');
+                    return;
+                }
+
+                const formData = new FormData();
+                formData.append('image', file);
+                formData.append('prompt', prompt);
+                formData.append('method', selectedMethod);
+
+                if (selectedMethod === 'method3') {
+                    formData.append('freeform_points', JSON.stringify(freeformPoints));
+                }
+
+                fetch('/api/generate', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.error) {
+                        throw new Error(data.error);
+                    }
+                    imagePreview.src = 'data:image/png;base64,' + data.image;
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Error generating image: ' + error.message);
+                });
+            });
+        });
+    </script>
 </body>
 </html>
