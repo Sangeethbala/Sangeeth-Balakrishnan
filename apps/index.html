@@ -4,7 +4,96 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Your Name - Apps</title>
-    <link rel="stylesheet" href="../assets/css/style.css"> </head>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        /* You can add more specific styles for the apps page here */
+        body {
+            font-family: sans-serif;
+            margin: 20px;
+            background-color: #f4f8fb;
+            color: #333;
+        }
+        .paper-highlight-framed {
+            border: 3px solid #64B5F6;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            background-color: #E3F2FD;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+            position: relative;
+        }
+        .headline {
+            font-size: 24px;
+            font-weight: bold;
+            color: #343a40;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .summary-points {
+            margin-bottom: 20px;
+        }
+        .point {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            font-size: 16px;
+            color: #495057;
+        }
+        .icon {
+            font-size: 20px;
+            margin-right: 10px;
+            color: #28a745;
+            flex-shrink: 0; /* Prevent icon from shrinking */
+            width: 25px;    /* Fixed width for icons */
+            text-align: center;
+        }
+        .point-text {
+            flex-grow: 1; /* Allow text to take up available space */
+        }
+
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* Two columns */
+            grid-template-rows: repeat(2, 1fr); /* Two rows, adjust as needed */
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .image-grid figure {
+            margin: 0;
+        }
+        .image-grid img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .image-grid figcaption {
+            font-size: 14px;
+            color: #6c757d;
+            text-align: center;
+            margin-top: 5px;
+        }
+        .show-publication-button {
+            display: block;
+            width: 200px;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s ease;
+        }
+
+        .show-publication-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
 <body>
     <header>
         <nav>
@@ -21,13 +110,126 @@
             <h1>My Apps</h1>
             <p>Here you can describe the apps you have developed. Include links to live demos or GitHub repositories if available.</p>
 
-            <div class="app-item">
-                <h2>App Name 1</h2>
-                <p>Short description of the app, its features, and technologies used.</p>
-                <a href="#" class="app-link">View App</a>
+            <!-- First App: Interview Prep Assistant -->
+            <div class="container">
+                <header>
+                    <h1>Interview Preparation<br>Assistant</h1>
+                    <p>Your AI-powered partner for interview success.</p>
+                </header>
+                <main>
+                    <section>
+                        <h2>About the App</h2>
+                        <p>The Interview Preparation Assistant is designed to help you ace your job interviews. By simulating real interview scenarios and providing insightful feedback, it helps you:</p>
+                        <ul>
+                            <li>Practice answering common interview questions.</li>
+                            <li>Receive personalized feedback on your responses.</li>
+                            <li>Articulate your skills and experiences more effectively.</li>
+                            <li>Build confidence for your next interview.</li>
+                        </ul>
+                        <p>Using advanced AI, powered by Langchain and the Groq LLM, our assistant acts as a dedicated interview coach, guiding you through practice sessions and helping you refine your answers.</p>
+                    </section>
+        
+                    <section>
+                        <h2>How It Works</h2>
+                        <p>Simply click the "Start Talking" button within the web application to begin practicing. Speak naturally, as you would in a real interview. Once you stop, the assistant will analyze your response and provide constructive feedback.</p>
+                        <p>The conversation history is maintained, allowing the assistant to provide contextually relevant advice and follow-up questions, just like a human interviewer.</p>
+                    </section>
+        
+                    <div class="button-container">
+                        <a href="https://arched-envelope-441615-c9.ue.r.appspot.com/" target="_blank">Go to Web App</a>
+                        <button onclick="downloadFile()">
+                            <img src="https://drishyageethai.com/wp-content/uploads/2024/12/windows.png" alt="Windows Logo"> Download for Windows
+                        </button>
+                    </div>
+                </main>
+                <footer>
+                    <p>© 2024 AppliedAI4All</p>
+                </footer>
+            </div>
+            <script>
+                function downloadFile() {
+                    window.location.href = '/download_windows_app';
+                }
+            </script>
+
+            <!-- Second App: Multi-document Summarizer -->
+            <div class="paper-highlight-framed">
+                <div class="headline">Multi-document Summarizer</div>
+                <div class="summary-points">
+                    <div class="point">
+                        <i class="fas fa-file-alt icon"></i>
+                        <span class="point-text">**Effortless Summarization:** Quickly condense multiple documents into concise summaries.</span>
+                    </div>
+                    <div class="point">
+                        <i class="fas fa-cogs icon"></i>
+                        <span class="point-text">**Advanced Algorithms:** Utilizes cutting-edge natural language processing techniques for accurate and relevant summarization.</span>
+                    </div>
+                    <div class="point">
+                        <i class="fas fa-clock icon"></i>
+                        <span class="point-text">**Time-Saving:** Streamlines the process of reviewing large volumes of text, saving valuable time.</span>
+                    </div>
+                    <div class="point">
+                        <i class="fas fa-user-check icon"></i>
+                        <span class="point-text">**User-Friendly Interface:** Designed for ease of use, making it accessible to users with varying technical expertise.</span>
+                    </div>
+                    <div class="point">
+                        <i class="fas fa-check-circle icon"></i>
+                        <span class="point-text">**Reliable Results:** Delivers consistent and dependable summaries, ensuring key information is captured.</span>
+                    </div>
+                </div>
+                <div class="image-grid">
+                    <figure>
+                        <img src="https://drishyageethai.com/wp-content/uploads/2024/12/multi_sum.png" alt="Screenshot of the Multi-document Summarizer app interface">
+                        <figcaption>User interface of the Multi-document Summarizer app.</figcaption>
+                    </figure>
+                    <figure>
+                        <img src="https://drishyageethai.com/wp-content/uploads/2024/12/Screenshot-2024-12-27-at-12.47.22-PM.png" alt="Screenshot of a summarized document">
+                        <figcaption>Example of a summarized document.</figcaption>
+                    </figure>
+                </div>
             </div>
 
-            </section>
+            <!-- Third App: PDF Q&A Assistant -->
+            <div class="paper-highlight-framed">
+                <div class="headline">PDF Q&A Assistant</div>
+                <div class="summary-points">
+                    <div class="point">
+                        <i class="fas fa-question-circle icon"></i>
+                        <span class="point-text">**Instant Answers:** Get quick answers to your questions about any PDF document.</span>
+                    </div>
+                    <div class="point">
+                        <i class="fas fa-search icon"></i>
+                        <span class="point-text">**Intelligent Search:** Uses advanced search algorithms to pinpoint relevant information within the document.</span>
+                    </div>
+                    <div class="point">
+                        <i class="fas fa-brain icon"></i>
+                        <span class="point-text">**AI-Powered Understanding:** Leverages AI to comprehend the context of your questions and provide accurate responses.</span>
+                    </div>
+                    <div class="point">
+                        <i class="fas fa-comments icon"></i>
+                        <span class="point-text">**Interactive Interface:** Engages in a conversational manner, allowing for follow-up questions and clarification.</span>
+                    </div>
+                    <div class="point">
+                        <i class="fas fa-check-circle icon"></i>
+                        <span class="point-text">**Efficient Learning:** Facilitates faster understanding of complex documents through targeted Q&A.</span>
+                    </div>
+                </div>
+                <div class="image-grid">
+                    <figure>
+                        <img src="https://drishyageethai.com/wp-content/uploads/2024/12/Screenshot-2024-12-27-at-12.44.46-PM.png" alt="Screenshot of the PDF Q&A Assistant interface">
+                        <figcaption>User interface of the PDF Q&A Assistant app.</figcaption>
+                    </figure>
+                    <figure>
+                        <img src="https://drishyageethai.com/wp-content/uploads/2024/12/Screenshot-2024-12-27-at-12.45.03-PM.png" alt="Screenshot of a sample question and answer">
+                        <figcaption>Example of a question and its answer.</figcaption>
+                    </figure>
+                </div>
+            </div>
+
+            <!-- Placeholder for additional apps -->
+            <!-- You can add more app containers here later -->
+
+        </section>
     </main>
 
     <footer>
