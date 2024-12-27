@@ -139,6 +139,23 @@
             margin-right: 8px; /* Space between image and text */
         }
 
+         .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            padding-top: 25px;
+            height: 0;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
     </style>
 </head>
 <body>
@@ -198,7 +215,42 @@
                 </div>
             </div>
 
-            <!-- Second App: Multi-document Summarizer -->
+            <!-- Second App: AI Image Editor -->
+            <div class="paper-highlight-framed">
+                <div class="headline">AI Image Editor</div>
+                <div class="summary-points">
+                    <div class="point">
+                        <i class="fas fa-image icon"></i>
+                        <span class="point-text">**Transform Your Photos:** Use AI to transform your images with unique enhancements and modifications.</span>
+                    </div>
+                    <div class="point">
+                        <i class="fas fa-layer-group icon"></i>
+                        <span class="point-text">**Background/Foreground Replacement:** Seamlessly replace backgrounds or foregrounds with AI-generated alternatives.</span>
+                    </div>
+                    <div class="point">
+                        <i class="fas fa-draw-polygon icon"></i>
+                        <span class="point-text">**Freeform Editing:** Apply AI enhancements to specific areas of your image with a freeform tool.</span>
+                    </div>
+                    <div class="point">
+                        <i class="fas fa-user-check icon"></i>
+                        <span class="point-text">**Easy to Use:** A user-friendly interface designed for both beginners and experienced users.</span>
+                    </div>
+                    <div class="point">
+                        <i class="fas fa-tachometer-alt icon"></i>
+                        <span class="point-text">**Fast Processing:** Quick image generation and processing powered by advanced AI models.</span>
+                    </div>
+                    <div class="point">
+                         <i class="fas fa-video icon"></i>
+                        <span class="point-text">**Demo Available:** Watch the video demonstration to see the AI Image Editor in action.</span>
+                    </div>
+
+                </div>
+                <div class="video-container">
+                     <iframe width="560" height="315" src="https://www.youtube.com/embed/sMHaVBg7-kM" frameborder="0" allowfullscreen></iframe>
+                </div>
+            </div>
+
+            <!-- Third App: Multi-document Summarizer -->
             <div class="paper-highlight-framed">
                 <div class="headline">Multi-document Summarizer</div>
                 <div class="summary-points">
@@ -235,7 +287,7 @@
                 </div>
             </div>
 
-            <!-- Third App: PDF Q&A Assistant -->
+            <!-- Fourth App: PDF Q&A Assistant -->
             <div class="paper-highlight-framed">
                 <div class="headline">PDF Q&A Assistant</div>
                 <div class="summary-points">
