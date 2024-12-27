@@ -6,6 +6,321 @@
     <title>Sangeeth Balakrishnan - Personal Website</title>
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        /* You can add more specific styles for the apps page here */
+        body {
+            font-family: sans-serif;
+            margin: 20px;
+            background-color: #f4f8fb;
+            color: #333;
+        }
+        .paper-highlight-framed {
+            border: 3px solid #64B5F6;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            background-color: #E3F2FD;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+            position: relative;
+        }
+        .headline {
+            font-size: 24px;
+            font-weight: bold;
+            color: #343a40;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .summary-points {
+            margin-bottom: 20px;
+        }
+        .point {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            font-size: 16px;
+            color: #495057;
+        }
+        .icon {
+            font-size: 20px;
+            margin-right: 10px;
+            color: #28a745;
+            flex-shrink: 0; /* Prevent icon from shrinking */
+            width: 25px;    /* Fixed width for icons */
+            text-align: center;
+        }
+        .point-text {
+            flex-grow: 1; /* Allow text to take up available space */
+        }
+
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* Two columns */
+            grid-template-rows: repeat(2, 1fr); /* Two rows, adjust as needed */
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .image-grid figure {
+            margin: 0;
+        }
+        .image-grid img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .image-grid figcaption {
+            font-size: 14px;
+            color: #6c757d;
+            text-align: center;
+            margin-top: 5px;
+        }
+        .show-publication-button {
+            display: block;
+            width: 200px;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s ease;
+        }
+
+        .show-publication-button:hover {
+            background-color: #0056b3;
+        }
+        .button-container {
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .button-container a {
+            display: inline-block;
+            padding: 14px 28px;
+            margin: 0 15px;
+            text-decoration: none;
+            color: #fff;
+            background-color: #333;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            vertical-align: middle; /* Align text and image vertically */
+        }
+
+        .button-container a:hover {
+            background-color: #555;
+        }
+
+        .button-container button {
+            display: inline-flex; /* Use flexbox for alignment */
+            align-items: center; /* Align items vertically */
+            justify-content: center; /* Center items horizontally */
+            padding: 14px 28px;
+            margin: 0 15px;
+            color: #fff;
+            background-color: #333;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+        }
+
+        .button-container button:hover {
+            background-color: #555;
+        }
+
+        .button-container button img {
+            height: 1.2em; /* Adjust size as needed */
+            margin-right: 8px; /* Space between image and text */
+        }
+
+         .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            padding-top: 25px;
+            height: 0;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .method-selection {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .method-selection button {
+            padding: 10px 20px;
+            margin: 0 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .method-selection button:hover {
+            background-color: #0056b3;
+        }
+
+        .method-selection button.active {
+            background-color: #0056b3; /* Highlight the selected method */
+        }
+        #image-preview-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: auto;
+            margin-top: 20px;
+        }
+
+        #image-preview {
+            max-width: 100%; /* Make sure the image fits within the container */
+            max-height: 400px; /* Set a maximum height */
+            object-fit: contain; /* Maintain aspect ratio */
+        }
+
+        #canvas-container {
+            position: relative;
+            width: fit-content;
+            height: fit-content;
+            margin: 20px auto;
+        }
+
+        #user-image, #canvas {
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        #canvas {
+            pointer-events: none; /* Initially, the canvas should not capture events */
+        }
+        .image-placeholder {
+            width: 100%;
+            max-width: 600px;
+            height: auto;
+            margin: 20px auto;
+            display: block;
+        }
+
+    </style>
+    <style>
+    /* General styles */
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+        color: #333;
+    }
+
+    header {
+        background-color: #0077cc;
+        color: #fff;
+        padding: 0.5rem 0; /* Reduced padding */
+        text-align: center;
+    }
+
+    nav ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    nav ul li {
+        display: inline;
+        margin: 0 10px;
+    }
+
+    nav ul li a {
+        color: #fff;
+        text-decoration: none;
+    }
+
+    main {
+        padding: 20px;
+    }
+
+    .container {
+        max-width: 800px; /* Reduced container width */
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #fff;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    section {
+        margin-bottom: 30px;
+    }
+
+    h1, h2 {
+        color: #0077cc;
+        text-align: center; /* Center align titles */
+    }
+
+    .lead {
+        font-size: 1.1rem; /* Reduced font size */
+        margin-bottom: 10px; /* Reduced margin */
+        text-align: center; /* Center align subtitle */
+    }
+
+    .profile-pic {
+        display: block;
+        margin: 0 auto 20px; /* Center the image */
+        border-radius: 50%;
+        width: 100px; /* Reduced image size */
+        height: 100px; /* Reduced image size */
+        object-fit: cover;
+    }
+
+    .btn {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #0077cc;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn:hover {
+        background-color: #0056b3;
+    }
+
+    /* Footer */
+    footer {
+        background-color: #333;
+        color: #fff;
+        text-align: center;
+        padding: 0.5rem 0;
+        position: relative;
+        bottom: 0;
+        width: 100%;
+    }
+
+    footer a {
+        color: #fff;
+        text-decoration: none;
+        margin: 0 5px;
+    }
+    .button-container {
+        margin-top: 20px; /* Reduced margin */
+        text-align: center;
+    }
+    </style>
 </head>
 <body>
     <header>
@@ -22,10 +337,6 @@
         <section id="intro">
             <div class="container">
                 <h1>Sangeeth Balakrishnan, Ph.D.</h1>
-                <p class="lead">
-                    Postdoctoral Researcher at the University of Maryland | 
-                    Expert in AI, Machine Learning, and Material Discovery
-                </p>
                 <img src="https://raw.githubusercontent.com/Sangeethbala/Sangeeth-Balakrishnan/main/sang.png" alt="Sangeeth Balakrishnan" class="profile-pic">
                 <p>
                     I am a Postdoctoral Researcher at the University of Maryland, specializing in the application of Artificial Intelligence (AI) and Machine Learning (ML) to address complex challenges in material science and drug discovery. With a strong foundation in Mechanical Engineering, holding a Ph.D. from the University of Maryland, a Master's from Iowa State University, and an M.Tech from the prestigious Indian Institute of Technology (IIT) Madras, my research focuses on leveraging advanced computational techniques to drive innovation in materials design and optimization.
@@ -56,9 +367,7 @@
     </main>
 
     <footer>
-        <p>© 2024 Sangeeth Balakrishnan</p>
-        <p>Contact: <a href="mailto:sbalakri@umd.edu">sbalakri@umd.edu</a></p>
-        <p>Connect: <a href="https://www.linkedin.com/in/sangeeth-balakrishnan/" target="_blank"><i class="fab fa-linkedin"></i></a> <a href="https://github.com/Sangeethbala" target="_blank"><i class="fab fa-github"></i></a></p>
+        <p>Connect: <a href="https://www.linkedin.com/in/sangeeth-balakrishnan/" target="_blank"><i class="fab fa-linkedin"></i></a></p>
     </footer>
 </body>
 </html>
