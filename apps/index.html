@@ -92,6 +92,53 @@
         .show-publication-button:hover {
             background-color: #0056b3;
         }
+        .button-container {
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .button-container a {
+            display: inline-block;
+            padding: 14px 28px;
+            margin: 0 15px;
+            text-decoration: none;
+            color: #fff;
+            background-color: #333;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            vertical-align: middle; /* Align text and image vertically */
+        }
+
+        .button-container a:hover {
+            background-color: #555;
+        }
+
+        .button-container button {
+            display: inline-flex; /* Use flexbox for alignment */
+            align-items: center; /* Align items vertically */
+            justify-content: center; /* Center items horizontally */
+            padding: 14px 28px;
+            margin: 0 15px;
+            color: #fff;
+            background-color: #333;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+        }
+
+        .button-container button:hover {
+            background-color: #555;
+        }
+
+        .button-container button img {
+            height: 1.2em; /* Adjust size as needed */
+            margin-right: 8px; /* Space between image and text */
+        }
+
     </style>
 </head>
 <body>
@@ -111,46 +158,45 @@
             <p>Here you can describe the apps you have developed. Include links to live demos or GitHub repositories if available.</p>
 
             <!-- First App: Interview Prep Assistant -->
-            <div class="container">
-                <header>
-                    <h1>Interview Preparation<br>Assistant</h1>
-                    <p>Your AI-powered partner for interview success.</p>
-                </header>
-                <main>
-                    <section>
-                        <h2>About the App</h2>
-                        <p>The Interview Preparation Assistant is designed to help you ace your job interviews. By simulating real interview scenarios and providing insightful feedback, it helps you:</p>
-                        <ul>
-                            <li>Practice answering common interview questions.</li>
-                            <li>Receive personalized feedback on your responses.</li>
-                            <li>Articulate your skills and experiences more effectively.</li>
-                            <li>Build confidence for your next interview.</li>
-                        </ul>
-                        <p>Using advanced AI, powered by Langchain and the Groq LLM, our assistant acts as a dedicated interview coach, guiding you through practice sessions and helping you refine your answers.</p>
-                    </section>
-        
-                    <section>
-                        <h2>How It Works</h2>
-                        <p>Simply click the "Start Talking" button within the web application to begin practicing. Speak naturally, as you would in a real interview. Once you stop, the assistant will analyze your response and provide constructive feedback.</p>
-                        <p>The conversation history is maintained, allowing the assistant to provide contextually relevant advice and follow-up questions, just like a human interviewer.</p>
-                    </section>
-        
-                    <div class="button-container">
-                        <a href="https://arched-envelope-441615-c9.ue.r.appspot.com/" target="_blank">Go to Web App</a>
-                        <button onclick="downloadFile()">
-                            <img src="https://drishyageethai.com/wp-content/uploads/2024/12/windows.png" alt="Windows Logo"> Download for Windows
-                        </button>
+            <div class="paper-highlight-framed">
+                <div class="headline">Interview Preparation Assistant</div>
+                <div class="summary-points">
+                    <div class="point">
+                        <i class="fas fa-user-tie icon"></i>
+                        <span class="point-text">**AI-Powered Coaching:** Get personalized interview coaching powered by advanced AI algorithms.</span>
                     </div>
-                </main>
-                <footer>
-                    <p>© 2024 AppliedAI4All</p>
-                </footer>
+                    <div class="point">
+                        <i class="fas fa-comment-dots icon"></i>
+                        <span class="point-text">**Realistic Simulation:** Practice with realistic interview scenarios to enhance your preparedness.</span>
+                    </div>
+                    <div class="point">
+                        <i class="fas fa-microphone icon"></i>
+                        <span class="point-text">**Voice Interaction:** Engage in natural, voice-based conversations for a true interview experience.</span>
+                    </div>
+                    <div class="point">
+                        <i class="fas fa-clipboard-list icon"></i>
+                        <span class="point-text">**Personalized Feedback:** Receive detailed feedback on your responses to improve your interviewing skills.</span>
+                    </div>
+                    <div class="point">
+                        <i class="fas fa-language icon"></i>
+                        <span class="point-text">**Powered by Langchain and Groq LLM:** Leveraging state-of-the-art language models for human-like interactions.</span>
+                    </div>
+                    <div class="point">
+                        <i class="fas fa-chart-line icon"></i>
+                        <span class="point-text">**Track Your Progress:** Monitor your improvement over time with performance tracking.</span>
+                    </div>
+                    <div class="point">
+                        <i class="fas fa-download icon"></i>
+                        <span class="point-text">**Windows Download Available:** Get the desktop version for an enhanced practice experience.</span>
+                    </div>
+                </div>
+                <div class="button-container">
+                    <a href="https://arched-envelope-441615-c9.ue.r.appspot.com/" target="_blank">Go to Web App</a>
+                    <button onclick="downloadFile()">
+                        <img src="https://drishyageethai.com/wp-content/uploads/2024/12/windows.png" alt="Windows Logo"> Download for Windows
+                    </button>
+                </div>
             </div>
-            <script>
-                function downloadFile() {
-                    window.location.href = '/download_windows_app';
-                }
-            </script>
 
             <!-- Second App: Multi-document Summarizer -->
             <div class="paper-highlight-framed">
@@ -235,5 +281,10 @@
     <footer>
         <p>© 2024 Your Name</p>
     </footer>
+     <script>
+            function downloadFile() {
+                window.location.href = 'interview_prep_assistant_windows.zip';
+            }
+     </script>
 </body>
 </html>
