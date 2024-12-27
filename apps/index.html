@@ -304,7 +304,7 @@
                 </div>
                 <img src="https://raw.githubusercontent.com/Sangeethbala/Sangeeth-Balakrishnan/main/20.PNG" alt="AI Image Editor Example" class="image-placeholder">
 
-               
+   
             </div>
 
             <!-- Third App: Multi-document Summarizer -->
@@ -391,78 +391,9 @@
         <p>© 2024 Your Name</p>
     </footer>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const generateButton = document.getElementById('generate-button');
-            const imageUpload = document.getElementById('image-upload');
-            const promptInput = document.getElementById('prompt');
-            const imagePreview = document.getElementById('image-preview');
-            const methodButton = document.querySelector('.method-selection button');
-            const userImage = document.getElementById('user-image');
-            const canvas = document.getElementById('canvas');
-            const ctx = canvas.getContext('2d');
-            let freeformPoints = [];
-            let isDrawing = false;
-
-            let selectedMethod = 'method1'; // Default method
-
-            methodButton.classList.add('active'); // Make the default method active initially
-
-            imageUpload.addEventListener('change', function(e) {
-                const file = e.target.files[0];
-                if (file) {
-                    const reader = new FileReader();
-                    reader.onload = function(e) {
-                        userImage.src = e.target.result;
-                        userImage.onload = () => {
-                            canvas.width = userImage.width;
-                            canvas.height = userImage.height;
-                            ctx.drawImage(userImage, 0, 0, canvas.width, canvas.height);
-                        };
-                    };
-                    reader.readAsDataURL(file);
-                }
-            });
-
-             generateButton.addEventListener('click', function() {
-                const file = imageUpload.files[0];
-                const prompt = promptInput.value;
-
-                if (!file) {
-                    alert('Please select an image file.');
-                    return;
-                }
-
-                if (!prompt) {
-                    alert('Please enter a prompt.');
-                    return;
-                }
-
-                const formData = new FormData();
-                formData.append('image', file);
-                formData.append('prompt', prompt);
-                formData.append('method', selectedMethod);
-
-                if (selectedMethod === 'method3') {
-                    formData.append('freeform_points', JSON.stringify(freeformPoints));
-                }
-
-                fetch('/api/generate', {
-                    method: 'POST',
-                    body: formData
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.error) {
-                        throw new Error(data.error);
-                    }
-                    imagePreview.src = 'data:image/png;base64,' + data.image;
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    alert('Error generating image: ' + error.message);
-                });
-            });
-        });
-    </script>
+            function downloadFile() {
+                window.location.href = 'interview_prep_assistant_windows.zip';
+            }
+     </script>
 </body>
 </html>
